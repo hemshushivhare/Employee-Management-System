@@ -1,0 +1,117 @@
+<div class="max-w-md mx-auto mt-20  p-6 bg-white rounded-md shadow-md mb-20">
+  <h2 class="text-2xl font-bold mb-4">Add New Employee</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onAddEmployee()" class="space-y-4">
+    <!-- First Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
+        <input type="text" id="name" name="name" formControlName="name" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('name')?.touched && employeeForm.get('name')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Name is required.
+        </div>
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
+        <input type="email" id="email" name="email" formControlName="email" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Email is required.
+        </div>
+        <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.hasError('email')" class="text-red-500 text-xs mt-1">
+          Invalid email format.
+        </div>
+      </div>
+      <div>
+        <label for="empId" class="block text-sm font-medium text-gray-600">Employee ID:</label>
+        <input type="text" id="empId" name="empId" formControlName="empId" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('empId')?.touched && employeeForm.get('empId')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Employee ID is required.
+        </div>
+      </div>
+      <div>
+        <label for="age" class="block text-sm font-medium text-gray-600">Age:</label>
+        <input type="number" id="age" name="age" formControlName="age" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('age')?.touched && employeeForm.get('age')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Age is required.
+        </div>
+        <div *ngIf="employeeForm.get('age')?.touched && employeeForm.get('age')?.hasError('min')" class="text-red-500 text-xs mt-1">
+          Age must be at least 18.
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+        <input type="password" id="password" name="password" formControlName="password" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('password')?.touched && employeeForm.get('password')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Password is required.
+        </div>
+        <div *ngIf="employeeForm.get('password')?.touched && employeeForm.get('password')?.hasError('pattern')" class="text-red-500 text-xs mt-1">
+          Password must contain a letter, digit, & a special character.
+        </div>
+        
+      </div>
+      <div>
+        <label for="department" class="block text-sm font-medium text-gray-600">Department:</label>
+        <input type="text" id="department" name="department" formControlName="department" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Department is required.
+        </div>
+      </div>
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-600">Role:</label>
+        <input type="text" id="role" name="role" formControlName="role" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('role')?.touched && employeeForm.get('role')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Role is required.
+        </div>
+      </div>
+      <div>
+        <label for="mobile" class="block text-sm font-medium text-gray-600">Mobile:</label>
+        <input type="tel" id="mobile" name="mobile" formControlName="mobile" class="mt-1 p-2 w-full border rounded-md">
+
+        <div *ngIf="employeeForm.get('mobile')?.touched && employeeForm.get('mobile')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Mobile is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Third Section -->
+    <div>
+      <label for="addressType" class="block text-sm font-medium text-gray-600">Address Type:</label>
+      <select id="addressType" name="addressType" formControlName="addressType" class="mt-1 p-2 w-full border rounded-md">
+        <option value="office">Office</option>
+        <option value="home">Home</option>
+      </select>
+    
+      <div *ngIf="employeeForm.get('addressType')?.touched && employeeForm.get('addressType')?.hasError('required')" class="text-red-500 text-xs mt-1">
+        Address Type is required.
+      </div>
+    </div>
+
+    <!-- Fourth Section -->
+    <div>
+      <label for="address" class="block text-sm font-medium text-gray-600">Address:</label>
+      <textarea id="address" name="address" formControlName="address" class="mt-1 p-2 w-full border rounded-md"></textarea>
+
+      <div *ngIf="employeeForm.get('address')?.touched && employeeForm.get('address')?.hasError('required')" class="text-red-500 text-xs mt-1">
+        Address is required.
+      </div>
+      <div>
+        <label for="image" class="block text-sm font-medium text-gray-600">Image:</label>
+        <input type="file" id="image" name="image" (change)="onImageSelected($event)" accept="image/*" class="mt-1 p-2 w-full border rounded-md">
+      </div>
+    </div>
+
+    <button type="submit"  class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+      Add Employee
+    </button>
+  </form>
+</div>

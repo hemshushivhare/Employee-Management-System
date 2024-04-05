@@ -1,0 +1,89 @@
+<div class="container mx-auto mt-8 flex justify-center items-center">
+  <div>
+    <!-- Search input field -->
+    <input
+      type="text"
+      placeholder="Search Employee"
+      [(ngModel)]="searchTerm"
+      class="w-[460px] mx-auto flex justify-center items-center p-2 mb-8 border rounded-md text-center"
+      (input)="searchEmployees(searchTerm)"
+    />
+
+    <div>
+      <div class="flex justify-between mb-2">
+        <h2 class="text-2xl font-bold">Employees List</h2>
+        <!-- Add Employee button -->
+        <div class="flex items-center">
+          <button
+            (click)="onAddEmployee()"
+            class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded"
+          >
+            Add Employee
+          </button>
+        </div>
+
+        <div class="flex items-center">
+          <button
+            (click)="onLeaveAction()"
+            class="flex justify-center items-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded"
+          >
+            Leave Requests
+          </button>
+        </div>
+
+      </div>
+
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr>
+            <th align="left"  class="py-2 px-2 border-b">Employee ID</th>
+            <th align="left" class="py-2  border-b">Name</th>
+            <th align="left" class="py-2  border-b">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Display the list of employees -->
+          <ng-container *ngIf="employees !== null; else noRecords">
+            <tr *ngFor="let employee of employees" class="hover:bg-gray-100" (click)="showDetails(employee)">
+              <td align="left" class="py-2 px-2 border-b">{{ employee.empId }}</td>
+              <td align="left" class="py-2  border-b">{{ employee.name }}</td>
+              <td align="left" class="py-2  border-b">{{ employee.role }}</td>
+            </tr>
+          </ng-container>
+
+          <!-- Display message when no records found -->
+          <ng-template #noRecords>
+            <tr>
+              <td colspan="3" class="py-2 px-48 border-b text-red-500">No record found</td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+      
+      <!-- Next and Previous buttons for pagination -->
+      <div class="flex justify-between mt-4">
+        <button
+          [disabled]="pageNumber === 1"
+          (click)="onPrevious()"
+          class="py-2 px-3 text-white font-bold rounded bg-blue-500"
+          [class.hover:bg-blue-700]="!(pageNumber === 1)"
+          [class.bg-gray-300]="pageNumber === 1"
+        >
+          Previous
+        </button>
+      
+        <button
+          [disabled]="EndPage"
+          (click)="onNext()"
+          class="py-2 px-7 text-white font-bold rounded bg-blue-500"
+          [class.hover:bg-blue-700]="!EndPage"
+          [class.bg-gray-300]="EndPage"
+        >
+          Next
+        </button>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>

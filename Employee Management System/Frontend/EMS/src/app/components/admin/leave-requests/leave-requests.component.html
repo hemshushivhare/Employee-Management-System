@@ -1,0 +1,66 @@
+<!-- leave-requests.component.html -->
+
+<div class="mt-8 flex justify-center items-center">
+  <div>
+    <h2 class="text-3xl font-bold mb-4 text-center">Leave Requests</h2>
+    <input type="text" id="searchStatus" [(ngModel)]="searchTerm"
+           class="mt-1 p-2 mb-4 border border-gray-300 rounded-md w-full text-center"
+           placeholder="Search By Leave Status Or Employee ID" (input)="searchLeaves(searchTerm)">
+
+    <div *ngIf="leaveRequests && leaveRequests.length > 0">
+      <table class="w-full mb-10 border border-gray-300">
+        <thead>
+          <tr>
+            <th align="left" class="px-2 py-2 border-b">Employee ID</th>
+            <th align="left" class="px-2 py-2 border-b">Start Date</th>
+            <th align="left" class="px-2 py-2 border-b">End Date</th>
+            <th align="left" class="px-2 py-2 border-b">Status</th>
+            <th align="left" class="px-2 py-2 border-b">Reason</th>
+            <th class="py-2 border-b">Action [Accept/Reject]</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leaveRequest of leaveRequests" class="bg-white">
+            <td align="left" class="px-2 py-2 border-b">{{ leaveRequest.employeeId }}</td>
+            <td align="left" class="px-2 py-2 border-b">{{ leaveRequest.startDate }}</td>
+            <td align="left" class="px-4 py-2 border-b">{{ leaveRequest.endDate }}</td>
+            <td align="left" class="px-2 py-2 border-b">{{ leaveRequest.leaveStatus }}</td>
+            <td align="left"
+                class="px-2 py-2 border-b transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                data-te-toggle="tooltip" [title]="leaveRequest.reason">
+              {{ leaveRequest.reason.substring(0, 15) + '...' }}
+            </td>
+            <td class="py-2 px-4 border-b">
+              <button (click)="onAccept(leaveRequest._id, leaveRequest.employeeId)"
+                      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 m-2 rounded-md">
+                Accept
+              </button>
+              <button (click)="onReject(leaveRequest._id, leaveRequest.employeeId)"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
+                Reject
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!(leaveRequests && leaveRequests.length > 0)">
+      <p class="py-2 px-48 border-b text-red-500">No record found</p>
+    </div>
+
+    <!-- Next and Previous buttons for pagination -->
+    <div class="flex justify-between mt-4">
+      <button [disabled]="pageNumber === 1" (click)="onPrevious()"
+              class="py-2 px-3 text-white font-bold rounded bg-blue-500"
+              [class.hover:bg-blue-700]="!(pageNumber === 1)" [class.bg-gray-300]="pageNumber === 1">
+        Previous
+      </button>
+      <button [disabled]="EndPage" (click)="onNext()"
+              class="py-2 px-7 text-white font-bold rounded bg-blue-500"
+              [class.hover:bg-blue-700]="!EndPage" [class.bg-gray-300]="EndPage">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

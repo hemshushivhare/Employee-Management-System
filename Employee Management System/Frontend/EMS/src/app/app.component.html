@@ -1,0 +1,9 @@
+<!-- app.component.html -->
+
+<div class="app-container">
+  <ng-container *ngIf="shouldRenderHeader()">
+    <app-header></app-header>
+  </ng-container>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>

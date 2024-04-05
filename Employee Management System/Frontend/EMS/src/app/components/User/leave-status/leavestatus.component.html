@@ -1,0 +1,23 @@
+<div class="p-4">
+  <h2 class="text-xl font-bold mb-4 text-center">Leaves Status</h2>
+  <table class="w-full border-collapse border">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border border-gray-300 px-4 py-2">Start Date</th>
+        <th class="border border-gray-300 px-4 py-2">End Date</th>
+        <th class="border border-gray-300 px-4 py-2">Reason</th>
+        <th class="border border-gray-300 px-4 py-2">Days Requested</th>
+        <th class="border border-gray-300 px-4 py-2">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let leaveRequest of leaveRequests" class="bg-white">
+        <td class="border border-gray-300 px-4 py-2">{{ leaveRequest.startDate }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ leaveRequest.endDate }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ leaveRequest.reason }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ leaveRequest.DaysRequested }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ leaveRequest.leaveStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,87 @@
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-bold mb-4 p-8 max-w-md mx-auto border rounded">Employee Details</h2>
+
+  <div *ngIf="employee" class="bg-white p-8 max-w-md mx-auto border rounded shadow-md">
+    <!-- Editable form -->
+    <form *ngIf="editMode" (ngSubmit)="onUpdate()" class="mb-4">
+      <div class="mb-2">
+        <label for="name" class="block text-gray-700 font-bold mb-1">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="employee.name" class="form-input">
+      </div>
+      <div class="mb-2">
+        <label for="empId" class="block text-gray-700 font-bold mb-1">Employee ID:</label>
+        <input type="text" id="empId" name="empId" [(ngModel)]="employee.empId" class="form-input" readonly>
+      </div>
+      <div class="mb-2">
+        <label for="age" class="block text-gray-700 font-bold mb-1">Age:</label>
+        <input type="text" id="age" name="age" [(ngModel)]="employee.age" class="form-input">
+      </div>
+      <div class="mb-2">
+        <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+        <input type="text" id="email" name="email" [(ngModel)]="employee.email" class="form-input" readonly>
+      </div>
+      <div class="mb-2">
+        <label for="department" class="block text-gray-700 font-bold mb-1">Department:</label>
+        <input type="text" id="department" name="department" [(ngModel)]="employee.department" class="form-input">
+      </div>
+      <div class="mb-2">
+        <label for="role" class="block text-gray-700 font-bold mb-1">Role:</label>
+        <input type="text" id="role" name="role" [(ngModel)]="employee.role" class="form-input">
+      </div>
+      <div class="mb-2">
+        <label for="mobile" class="block text-gray-700 font-bold mb-1">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" [(ngModel)]="employee.mobile" class="form-input">
+      </div>
+      <!-- Inside the form for editable view -->
+      <div class="mb-2">
+        <label for="addressType" class="block text-gray-700 font-bold mb-1">Address Type:</label>
+        <select id="addressType" name="addressType" [(ngModel)]="employee.addressType" class="form-select">
+          <option *ngFor="let type of addressTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="mb-2">
+        <label for="address" class="block text-gray-700 font-bold mb-1">Address:</label>
+        <input type="text" id="address" name="address" [(ngModel)]="employee.address" class="form-input">
+      </div>
+
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Update Employee Details
+      </button>
+      <button type="button" (click)="onCancelEdit()"
+        class="ml-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+        Cancel
+      </button>
+    </form>
+
+    <!-- Non-editable view -->
+    <div *ngIf="!editMode">
+      <img *ngIf="employee.imageURL !== '' && employee.imageURL !== null" [src]="employee.imageURL" alt="Employee Image" class="mx-auto w-28 rounded-full mb-2">
+<img *ngIf="!employee.imageURL || employee.imageURL === ''" src="https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_640.png" alt="Default Image" class="mx-auto w-28 mb-2 rounded-full">
+      <p class="mb-2"><span class="font-semibold">Name:</span> {{ employee.name }}</p>
+      <p class="mb-2"><span class="font-semibold">Employee ID:</span> {{ employee.empId }}</p>
+      <p class="mb-2"><span class="font-semibold">Age:</span> {{ employee.age }}</p>
+      <p class="mb-2"><span class="font-semibold">Email:</span> {{ employee.email }}</p>
+      <p class="mb-2"><span class="font-semibold">Department:</span> {{ employee.department }}</p>
+      <p class="mb-2"><span class="font-semibold">Role:</span> {{ employee.role }}</p>
+      <p class="mb-2"><span class="font-semibold">Mobile:</span> {{ employee.mobile }}</p>
+      <p class="mb-2"><span class="font-semibold">Address Type:</span> {{ employee.addressType }}</p>
+      <p class="mb-2"><span class="font-semibold">Address:</span> {{ employee.address }}</p>
+
+      <button (click)="onEdit()" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Edit Employee Details
+      </button>
+
+      <button (click)="openDialog()" class="ml-6 mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        Delete Employee
+      </button>
+      <div *ngIf="isDialogOpen" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+        <app-dialog [title]="'Confirmation'" [content]="'Are you sure you want to delete this employee?'" (dialogClosed)="closeDialog()" (actionConfirmed)="onDelete()">
+        </app-dialog>
+      </div>
+      
+    </div>
+
+
+  </div>
+</div>

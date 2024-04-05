@@ -1,0 +1,42 @@
+<div class="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Leave Request</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="leaveForm" class="space-y-4">
+      <div class="mb-4">
+        <label for="employeeId" class="block text-sm font-medium text-gray-600">Employee ID:</label>
+       <input type="text" id="employeeId" formControlName="employeeId" readonly
+       class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="mb-4">
+        <label for="startDate" class="block text-sm font-medium text-gray-600">Start Date:</label>
+        <input type="date" id="startDate" formControlName="startDate"
+               class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="leaveForm.get('startDate')?.touched && leaveForm.get('startDate')?.errors"
+             class="text-red-500 text-xs mt-1">
+          Start Date is required.
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="endDate" class="block text-sm font-medium text-gray-600">End Date:</label>
+        <input type="date" id="endDate" formControlName="endDate"
+               class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="leaveForm.get('endDate')?.touched && leaveForm.get('endDate')?.errors"
+             class="text-red-500 text-xs mt-1">
+          End Date is required.
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="reason" class="block text-sm font-medium text-gray-600">Reason:</label>
+        <textarea id="reason" formControlName="reason"
+                  class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+        <div *ngIf="leaveForm.get('reason')?.touched && leaveForm.get('reason')?.errors"
+             class="text-red-500 text-xs mt-1">
+          Reason is required.
+        </div>
+      </div>
+      <button type="submit" [disabled]="leaveForm.invalid"
+              class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+        Submit Request
+      </button>
+    </form>
+  </div>
+  

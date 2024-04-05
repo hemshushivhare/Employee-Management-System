@@ -1,0 +1,22 @@
+<!-- header.component.html -->
+
+<div class="bg-blue-500 p-4 flex justify-between items-center">
+   
+    <div>
+        <img src="https://www.impledge.com/images/logo.png">
+    </div>
+    <div class="text-white font-bold text-lg">WELCOME {{ username?.toUpperCase() }}</div>
+
+   
+    <div class="flex items-center space-x-4">
+        <button class="bg-green-500 text-white px-4 py-2 rounded" >
+            <div>
+                <a *ngIf="role === 'Employee'" [routerLink]="['/user-details', emailpath]" class="text-white ">Home </a>
+                <a *ngIf="role === 'Employer'" routerLink="/EmployeeList" class="text-white ">Home </a>
+        
+            </div>
+        </button>
+        
+        <app-logout></app-logout>
+    </div>
+</div>

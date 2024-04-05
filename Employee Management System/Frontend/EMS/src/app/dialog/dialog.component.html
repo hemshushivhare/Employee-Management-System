@@ -1,0 +1,15 @@
+<!-- dialog.component.html -->
+<div class="fixed inset-0 overflow-y-auto">
+  <div class="flex items-center justify-center min-h-screen">
+    <!-- Dialog container -->
+    <div class="bg-gray-500 bg-opacity-75 absolute inset-0"></div>
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-md relative z-10">
+      <h2 class="text-lg font-semibold mb-4">{{ title }}</h2>
+      <div>{{ content }}</div>
+      <div class="mt-6 flex justify-end">
+        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 mr-2" (click)="closeDialog($event)">Cancel</button>
+        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="confirmAction()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

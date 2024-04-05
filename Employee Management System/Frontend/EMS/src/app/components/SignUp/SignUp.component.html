@@ -1,0 +1,45 @@
+<div class="max-w-md mx-auto mt-48 p-6 bg-white rounded-md shadow-md">
+    <h2 class="text-2xl font-bold mb-4">New Employer</h2>
+    <form (ngSubmit)="onSubmit()" *ngIf="signupForm" [formGroup]="signupForm" class="space-y-4">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
+        <input type="email" id="email" formControlName="email" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors" class="text-red-500 text-xs mt-1">
+          <div *ngIf="signupForm.get('email')?.hasError('required')">Email is required.</div>
+          <div *ngIf="signupForm.get('email')?.hasError('email')">Invalid email format.</div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+        <input type="password" id="password" formControlName="password" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors" class="text-red-500 text-xs mt-1">
+          <div *ngIf="signupForm.get('password')?.hasError('required')">Password is required.</div>
+          <div *ngIf="signupForm.get('password')?.hasError('minlength')">Password must be at least 6 characters.</div>
+          <div *ngIf="signupForm.get('password')?.hasError('maxlength')">Password must be at max 12 characters.</div>
+          <div *ngIf="signupForm.get('password')?.hasError('pattern')">
+            Password must contain a letter, digit, & a special character.
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="role" class="block text-sm font-medium text-gray-600">Role:</label>
+        <select id="role" formControlName="role" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="" disabled selected>Select Role</option>
+         
+          <option value="Employer">Employer</option>
+        </select>
+        <div *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.hasError('required')" class="text-red-500 text-xs mt-1">
+          Role is required.
+        </div>
+      </div>
+      <button type="submit" [disabled]="signupForm.invalid" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+        Signup
+      </button>
+    </form>
+
+      <div class="mt-4 text-center">
+        <span class="text-gray-600">Already Registered?</span>
+        <a routerLink="/" class="text-blue-500 hover:underline">Login</a>
+      </div> 
+  </div>
+  

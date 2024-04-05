@@ -1,0 +1,48 @@
+<div class="max-w-md mx-auto mt-48 p-6 bg-white rounded-md shadow-md">
+  
+  <h2 class="text-2xl font-bold mb-4">Login</h2>
+  <form (ngSubmit)="onLogin()" *ngIf="loginForm" [formGroup]="loginForm" class="space-y-4">
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
+      <input type="email" id="email" formControlName="email" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors" class="text-red-500 text-xs mt-1">
+        <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</div>
+        <div *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format.</div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+      <input type="password" id="password" formControlName="password" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors" class="text-red-500 text-xs mt-1">
+        <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</div>
+        <div *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters.</div>
+        <div *ngIf="loginForm.get('password')?.hasError('maxlength')">Password must be at max 12 characters.</div>
+        <div *ngIf="loginForm.get('password')?.hasError('pattern')">
+          Password must contain a letter, digit, & a special character.
+        </div>
+      </div>
+      
+     
+        <div class="flex items-start mt-2">
+            <div class="flex items-center h-5">
+              <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" (change)="toggleRememberMe()">
+            </div>
+            <div class="ml-3 text-sm">
+              <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+      Login
+    </button>
+  </form>
+  
+  
+  <!-- <div class="mt-4 text-center">
+    <span class="text-gray-600">Not Registered Yet?</span>
+    <a routerLink="/signup" class="text-blue-500 hover:underline">Sign Up</a>
+  </div> -->
+</div>
+
+  
+  
