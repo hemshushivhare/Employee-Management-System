@@ -1,15 +1,15 @@
 **Employee Management System**
 
 **Project Overview:**
-The Employee Management System is a web application designed to streamline employee management tasks within an organization. It includes features for user authentication, employee listing, employee details, profile management, and leave management. The system is built using React for the frontend, and a RESTful API backend built with technologies like Node.js and Express.js. Data is stored in a relational database, and the project follows a modular architecture to maintain scalability and code organization.
+The Employee Management System is a web application designed to streamline employee management tasks within an organization. It includes features for user authentication, employee listing, employee details, profile management, and leave management. The system is built using Angular for the frontend, and a RESTful API backend built with Golang using Gin framework. Data is stored in a Mongo DB database, and the project follows a modular architecture to maintain scalability and code organization.
 
 **UI - UI App architecture:**
-- Built with React to ensure a dynamic and interactive user interface.
+- Built with Angular to ensure a dynamic and interactive user interface.
 - Follows a component-based architecture for modularity and reusability.
 
 **UI - Login/signup:**
 - Allows users to log in using their username and password.
-- User credentials are verified against a JSON file.
+- User credentials are verified with JWT Authentication.
 - Upon successful verification, the user is authorized and their information is stored in local storage.
 
 **UI - Employee list:**
@@ -25,7 +25,7 @@ The Employee Management System is a web application designed to streamline emplo
 - Provides basic UI for profile display and edit functionality.
 
 **API - App architecture:**
-- Backend API built using Node.js and Express.js.
+- Backend API built using Golang and Gin framework.
 - Follows a modular architecture with separate controllers, models, repositories, and services.
 - Controllers include AuthController and EmployeeController for handling authentication and employee-related operations.
 - Models consist of AuthEntity, EmployeeEntity, and others to define data structures.
